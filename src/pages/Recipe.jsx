@@ -18,43 +18,46 @@ function Recipe() {
         navigate("/");
     }
 
-
     return (
-        <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center">
+        <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center justify-center">
             <Nav />
-            {loading &&
+
+            {loading && (
                 <div className="flex justify-center items-center h-[60vh]">
                     <CircleDashed className="w-12 h-12 text-[#dadada] animate-spin" />
                 </div>
-            }
-
-            {!loading && selectedRecipe && (
-                <div className="flex flex-col gap-4 p-4 md:p-8 md:px-24 flex-1 overflow-auto w-full">
-                    <h2 className="text-[#f59e0b] text-2xl md:text-4xl">{selectedRecipe.title}</h2>
-                    <p>{selectedRecipe.description}</p>
-                    <img src={selectedRecipe.imageUrl} alt="image" className="h-48 w-48" />
-                    <p>
-                        <span className="font-bold"> Steps : </span>
-                        <br />
-                        {selectedRecipe.steps}
-                    </p>
-                    <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded w-max flex" onClick={deleteRecipe}>    
-                        <Trash2Icon className="w-6 h-6 mr-2" />
-                        Delete Recipe 
-                    </button>
-                </div>
             )}
 
-            {
-                !loading && !selectedRecipe && (
-                    <div className="flex justify-center items-center h-[60vh]">
-                        <XCircleIcon className="w-12 h-12 text-[#dadada] mr-2" />
-                        <p className="text-xl">Recipe not found</p>
+            {!loading && selectedRecipe ? (
+                <div className="flex flex-col p-4 md:p-8 md:px-24 flex-1 overflow-auto w-full max-w-4xl gap-4 items-center ">
+                    <div className="flex flex-col md:flex-row gap-4 items-center">
+                        <img src={selectedRecipe.imageUrl} alt="Recipe" className="h-80 w-80 object-cover rounded-lg shadow-md" />
+                        <div className="flex flex-col  text-center md:text-left">
+                            <h2 className="text-[#f59e0b] text-2xl md:text-4xl">{selectedRecipe.title}</h2>
+                            <p className="text-[#dadada] mt-2">{selectedRecipe.description}</p>
+                        </div>
                     </div>
-                )
-            }
+                    <div className="flex flex-col gap-4 mt-4 items-center">
+                        <p className="text-[#dadada] whitespace-pre-wrap text-center md:text-left">
+                            <span className="font-bold">Steps:</span>
+                            <br />
+                            {selectedRecipe.steps}
+                        </p>
+                        <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded flex items-center" onClick={deleteRecipe}>
+                            <Trash2Icon className="w-6 h-6 mr-2" />
+                            Delete Recipe
+                        </button>
+                    </div>
+                </div>
+            ) : (
+                <div className="flex justify-center items-center h-[60vh]">
+                    <XCircleIcon className="w-12 h-12 text-[#dadada] mr-2" />
+                    <p className="text-xl text-[#dadada]">Recipe not found</p>
+                </div>
+            )}
         </div>
     );
+
 }
 
 export { Recipe }
