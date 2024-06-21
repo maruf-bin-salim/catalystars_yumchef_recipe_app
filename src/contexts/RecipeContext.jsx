@@ -1,16 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
+import useRecipe from "../hooks/useRecipe";
 
 const RecipeContext = React.createContext();
 
 const RecipeProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+  const {
+    loading,
+    recipes,
+    selectedRecipe,
+    setSelectedRecipeId,
+    deleteRecipeFromDatabase,
+    updateRecipeInDatabase,
+    addRecipeToDatabase
+  } = useRecipe();
 
 
   return (
     <RecipeContext.Provider
       value={{
         loading,
-        setLoading,
+        recipes,
+        selectedRecipe,
+        deleteRecipeFromDatabase,
+        updateRecipeInDatabase,
+        addRecipeToDatabase,
+        setSelectedRecipeId,
       }}
     >
       {children}
