@@ -1,15 +1,22 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalContext } from "../contexts/RecipeContext";
 import { useEffect } from "react";
 import Nav from "../components/Nav";
-import { CircleDashed, LucideSignalZero, XCircleIcon } from "lucide-react";
+import { CircleDashed, LucideSignalZero, Trash2Icon, XCircleIcon } from "lucide-react";
 
 function Recipe() {
     const { id } = useParams();
-    const { selectedRecipe, loading, setSelectedRecipeId } = useGlobalContext();
+    const { selectedRecipe, loading, setSelectedRecipeId, deleteRecipeFromDatabase } = useGlobalContext();
     useEffect(() => {
         setSelectedRecipeId(id);
     }, [id]);
+
+    let navigate = useNavigate();
+
+    async function deleteRecipe() {
+        await deleteRecipeFromDatabase(id);
+        navigate("/");
+    }
 
 
     return (
@@ -29,7 +36,12 @@ function Recipe() {
                     <p>
                         <span className="font-bold"> Steps : </span>
                         <br />
-                        {selectedRecipe.steps}</p>
+                        {selectedRecipe.steps}
+                    </p>
+                    <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded w-max flex" onClick={deleteRecipe}>    
+                        <Trash2Icon className="w-6 h-6 mr-2" />
+                        Delete Recipe 
+                    </button>
                 </div>
             )}
 
