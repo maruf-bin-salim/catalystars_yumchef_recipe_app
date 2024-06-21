@@ -78,7 +78,7 @@ function Edit() {
                             <textarea
                                 value={steps}
                                 onChange={(e) => setSteps(e.target.value)}
-                                className="p-2 min-h-40 md:min-h-60 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
+                                className="p-2 min-h-40 md:min-h-80 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
                             />
                         </div>
                     </div>
