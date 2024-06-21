@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Home() {
     const { loading, recipes } = useGlobalContext();
     return (
-        <div className="h-screen bg-[#161616] text-[#dadada] flex flex-col items-center">
+        <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center">
             <Nav />
             {loading &&
                 <div className="flex justify-center items-center h-[60vh]">
@@ -17,9 +17,9 @@ function Home() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8 w-full p-4 md:p-8 md:px-24 overflow-auto">
                 {recipes.map((recipe) => {
                     return (
-                        <div key={recipe.id} className="bg-[#1a1a1a] p-4 rounded-lg flex flex-col gap-4 hover:bg-[#1d1d1d]">
-                            <h2 className="text-[#f59e0b]">{recipe.title}</h2>
+                        <div key={recipe.id} className="bg-gray-800 rounded-lg shadow-md flex flex-col gap-4 p-4 hover:bg-gray-700">
                             <img src={recipe.imageUrl} alt="image" className="w-full h-48 object-cover" />
+                            <h2 className="text-[#f59e0b]">{recipe.title}</h2>
                             <p>{recipe.description}</p>
 
                             <div className="flex md:justify-end gap-4 py-4 md:p-8">

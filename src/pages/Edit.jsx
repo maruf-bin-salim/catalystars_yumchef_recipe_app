@@ -5,7 +5,7 @@ import { useGlobalContext } from "../contexts/RecipeContext";
 function Edit() {
 
     const { id } = useParams();
-    const { selectedRecipe, setSelectedRecipeId } = useGlobalContext();
+    const { selectedRecipe, loading, setSelectedRecipeId } = useGlobalContext();
     useEffect(() => {
         setSelectedRecipeId(id);
     }, [id]);
@@ -14,6 +14,7 @@ function Edit() {
     return (
         <div>
             <h1>Edit Page</h1>
+            {loading && <p>Loading</p>}
             {selectedRecipe && (
                 <div>
                     <h2>{selectedRecipe.title}</h2>
