@@ -35,7 +35,7 @@ function Recipe() {
                         <div className="flex flex-col  text-center md:text-left md:ml-10 ">
                             <h2 className="text-[#f59e0b] text-2xl md:text-4xl">{selectedRecipe.title}</h2>
                             <p className="text-[#dadada] mt-2">{selectedRecipe.description}</p>
-                            <button className="bg-red-500 hover:bg-red-600 text-white w-max px-4 mt-10 py-2 rounded flex " onClick={deleteRecipe}>
+                            <button className="bg-red-500 hover:bg-red-600 mx-auto text-white w-max px-4 mt-10 py-2 rounded flex " onClick={deleteRecipe}>
                                 <Trash2Icon className="w-6 h-6 mr-2" />
                                 Delete Recipe
                             </button>
