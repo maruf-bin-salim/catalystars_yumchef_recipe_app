@@ -75,7 +75,7 @@ function Add() {
                     </div>
                     <div className="flex justify-center md:justify-end p-4 w-full">
                         <button
-                            className="p-2 bg-yellow-700 hover:bg-yellow-800 shadow-md text-white rounded-lg"
+                            className="p-2 bg-yellow-700  text- hover:bg-yellow-800 shadow-md text-white rounded-lg"
                             onClick={handleAddRecipe}
                             disabled={loading}
                         >

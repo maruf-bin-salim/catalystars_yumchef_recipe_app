@@ -22,7 +22,7 @@ function Home() {
                             <h2 className="text-[#f59e0b]">{recipe.title}</h2>
                             <p>{recipe.description}</p>
 
-                            <div className="flex justify-end gap-4">
+                            <div className="flex justify-end gap-4 mt-auto">
                                 <Link to={`/edit/${recipe.id}`} className="flex items-center bg-yellow-600 hover:bg-yellow-700 text-xl text-white px-4 py-2 rounded">
                                     Edit
                                     <Edit2Icon className="w-5 h-5 ml-2" />
