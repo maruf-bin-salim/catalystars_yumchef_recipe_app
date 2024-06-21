@@ -16,14 +16,16 @@ import { Recipe } from './pages/Recipe';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/recipe/:id" element={<Recipe />} />
-        <Route path="/edit/:id" element={<Edit />} />
-        <Route path='/add' element={<Add />} />
-      </Routes>
-    </BrowserRouter>
+    <RecipeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path='/add' element={<Add />} />
+        </Routes>
+      </BrowserRouter>
+    </RecipeProvider>
   );
 }
 
