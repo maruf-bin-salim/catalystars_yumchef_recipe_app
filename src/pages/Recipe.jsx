@@ -42,7 +42,7 @@ function Recipe() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 mt-4 ">
-                        <p className="text-[#dadada] whitespace-pre-wrap text-center md:text-left">
+                        <p className="text-[#dadada] whitespace-pre-wrap text-left">
                             <span className="font-bold">Steps</span>
                             <br />
                             <br />
