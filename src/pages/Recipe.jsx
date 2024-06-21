@@ -31,7 +31,7 @@ function Recipe() {
             {!loading && selectedRecipe && (
                 <div className="flex flex-col p-4 md:p-8 md:px-40 flex-1 overflow-auto w-full gap-4">
                     <div className="flex flex-col md:flex-row gap-4">
-                        <img src={selectedRecipe.imageUrl} alt="Recipe" className="h-80 w-80 object-cover rounded-lg shadow-md" />
+                        <img src={selectedRecipe.imageUrl} alt="Recipe" className="h-80 w-full md:w-80 object-cover rounded-lg shadow-md" />
                         <div className="flex flex-col  text-center md:text-left md:ml-10 ">
                             <h2 className="text-[#f59e0b] text-2xl md:text-4xl">{selectedRecipe.title}</h2>
                             <p className="text-[#dadada] mt-2">{selectedRecipe.description}</p>
