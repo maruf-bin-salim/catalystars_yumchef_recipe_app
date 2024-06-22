@@ -37,7 +37,7 @@ function Edit() {
     }
 
 
-    
+
 
     return (
         <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center">
@@ -82,12 +82,12 @@ function Edit() {
                                 className="p-2 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
                             />
                         </div>
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-2 flex-1">
                             <label className="text-[#dadada]">Steps</label>
                             <textarea
                                 value={steps}
                                 onChange={(e) => setSteps(e.target.value)}
-                                className="p-2 min-h-40 md:min-h-80 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
+                                className="flex-1 p-2 md:min-h-80 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
                             />
                         </div>
                     </div>
