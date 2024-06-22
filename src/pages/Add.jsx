@@ -14,10 +14,25 @@ function Add() {
     const [steps, setSteps] = useState("");
     const navigate = useNavigate();
 
+    function addNewlineAfterPeriod(text) {
+        let updatedText = '';
+
+        for (let i = 0; i < text.length; i++) {
+            updatedText += text[i];
+
+            if (text[i] === '.' && i < text.length - 1 && text[i + 1] !== '\n') {
+                updatedText += '\n';
+            }
+        }
+
+        return updatedText;
+    }
+
+
 
     async function handleAddRecipe() {
-        await addRecipeToDatabase(title, imageUrl, description, steps);
 
+        await addRecipeToDatabase(title, imageUrl, description, steps);
         window.alert('Recipe added');
 
 
@@ -31,7 +46,7 @@ function Add() {
     return (
         <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center">
             <Nav />
-            <div className="flex justify-endflex justify-start w-full p-4 ">
+            <div className="flex justify-start w-full p-4 justify-endflex ">
                 <button onClick={() => navigate(-1)} >
                     <ArrowLeft className="w-8 h-8" />
                 </button>
@@ -72,18 +87,45 @@ function Add() {
                                 className="p-2 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
                             />
                         </div>
-                        <div className="flex flex-col gap-2 flex-1">
+                        <div className="flex flex-col flex-1 gap-2">
                             <label className="text-[#dadada]">Steps</label>
                             <textarea
                                 value={steps}
-                                onChange={(e) => setSteps(e.target.value)}
+                                onChange={(e) => {
+                                    if (e.target.value.split('').pop() === '.') {
+
+                                        // user is trying to remove the last period of the string
+                                        if (e.target.value.length < steps.length) {
+
+                                            // remove the last period and the all the previous consecutive periods, newlines combination
+                                            let updatedText = e.target.value;
+                                            let i = updatedText.length - 1;
+                                            while (i >= 0 && (updatedText[i] === '.' || updatedText[i] === '\n')) {
+                                                i--;
+                                            }
+
+                                            updatedText = updatedText.slice(0, i + 1);
+                                            // set the updated text
+                                            setSteps(updatedText);
+                                            return;
+
+                                        }
+                                        // user is trying to add a period at the end of the string
+                                        // add a newline after the period
+                                        setSteps(e.target.value + '\n');
+                                        return;
+                                    }
+
+                                    // not relevant to the period, so just update the state
+                                    setSteps(e.target.value);
+                                }}
                                 className="flex-1 p-2 md:min-h-80 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
                             />
                         </div>
                     </div>
-                    <div className="flex justify-center md:justify-end p-4 w-full">
+                    <div className="flex justify-center w-full p-4 md:justify-end">
                         <button
-                            className="p-2 bg-yellow-700 hover:bg-yellow-800 shadow-md text-white rounded-lg"
+                            className="p-2 text-white bg-yellow-700 rounded-lg shadow-md hover:bg-yellow-800"
                             onClick={handleAddRecipe}
                             disabled={loading}
                         >
