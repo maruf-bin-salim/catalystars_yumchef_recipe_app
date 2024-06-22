@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../contexts/RecipeContext";
 import { useState } from "react";
 import Nav from "../components/Nav";
-import { CircleDashed } from "lucide-react";
+import { ArrowLeft, CircleDashed } from "lucide-react";
 
 function Add() {
 
@@ -12,12 +12,14 @@ function Add() {
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [steps, setSteps] = useState("");
-
     const navigate = useNavigate();
 
 
     async function handleAddRecipe() {
         await addRecipeToDatabase(title, imageUrl, description, steps);
+
+        window.alert('Recipe added');
+
 
         // clear the form
         setTitle("");
@@ -29,6 +31,12 @@ function Add() {
     return (
         <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center">
             <Nav />
+            <div className="flex justify-endflex justify-start w-full p-4 ">
+                <button onClick={() => navigate(-1)} >
+                    <ArrowLeft className="w-8 h-8" />
+                </button>
+            </div>
+
             {loading && (
                 <div className="flex justify-center items-center h-[60vh]">
                     <CircleDashed className="w-12 h-12 text-[#dadada] animate-spin" />

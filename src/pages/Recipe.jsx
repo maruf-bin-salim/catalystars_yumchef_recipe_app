@@ -2,7 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalContext } from "../contexts/RecipeContext";
 import { useEffect } from "react";
 import Nav from "../components/Nav";
-import { CircleDashed, LucideSignalZero, Trash2Icon, XCircleIcon } from "lucide-react";
+import { ArrowLeft, CircleDashed, Trash2Icon, XCircleIcon } from "lucide-react";
+
 
 function Recipe() {
     const { id } = useParams();
@@ -13,15 +14,15 @@ function Recipe() {
 
     let navigate = useNavigate();
 
-    async function deleteRecipe() {
-        await deleteRecipeFromDatabase(id);
-        navigate("/");
-    }
 
     return (
         <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col">
             <Nav />
-
+            <div className="flex justify-endflex justify-start w-full p-4 ">
+                <button onClick={() => navigate(-1)} >
+                    <ArrowLeft className="w-8 h-8" />
+                </button>
+            </div>
             {loading && (
                 <div className="flex justify-center items-center h-[60vh]">
                     <CircleDashed className="w-12 h-12 text-[#dadada] animate-spin" />
@@ -35,10 +36,6 @@ function Recipe() {
                         <div className="flex flex-col  text-center md:text-left md:ml-10 ">
                             <h2 className="text-[#f59e0b] text-2xl md:text-4xl">{selectedRecipe.title}</h2>
                             <p className="text-[#dadada] mt-2">{selectedRecipe.description}</p>
-                            <button className="bg-red-500 hover:bg-red-600 mx-auto md:mx-0 text-white w-max px-4 mt-10 py-2 rounded flex " onClick={deleteRecipe}>
-                                <Trash2Icon className="w-6 h-6 mr-2" />
-                                Delete Recipe
-                            </button>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 mt-4 ">

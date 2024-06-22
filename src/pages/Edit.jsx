@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalContext } from "../contexts/RecipeContext";
 import Nav from "../components/Nav";
-import { CircleDashed } from "lucide-react";
+import { ArrowLeft, CircleDashed } from "lucide-react";
 
 function Edit() {
 
@@ -12,6 +12,8 @@ function Edit() {
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [steps, setSteps] = useState("");
+    const navigate = useNavigate();
+
 
 
     useEffect(() => {
@@ -30,6 +32,8 @@ function Edit() {
 
     async function handleUpdateRecipe() {
         await updateRecipeInDatabase(id, title, imageUrl, description, steps);
+        window.alert('Recipe Edited');
+
     }
 
 
@@ -38,6 +42,11 @@ function Edit() {
     return (
         <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center">
             <Nav />
+            <div className="flex justify-endflex justify-start w-full p-4 ">
+                <button onClick={() => navigate(-1)} >
+                    <ArrowLeft className="w-8 h-8" />
+                </button>
+            </div>
             {loading && (
                 <div className="flex justify-center items-center h-[60vh]">
                     <CircleDashed className="w-12 h-12 text-[#dadada] animate-spin" />
