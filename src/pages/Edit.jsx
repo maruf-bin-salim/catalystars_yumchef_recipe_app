@@ -87,32 +87,16 @@ function Edit() {
                             <textarea
                                 value={steps}
                                 onChange={(e) => {
-                                    if (e.target.value.split('').pop() === '.') {
-
-                                        // user is trying to remove the last period of the string
-                                        if (e.target.value.length < steps.length) {
-
-                                            // remove the last period and the all the previous consecutive periods, newlines combination
-                                            let updatedText = e.target.value;
-                                            let i = updatedText.length - 1;
-                                            while (i >= 0 && (updatedText[i] === '.' || updatedText[i] === '\n')) {
-                                                i--;
-                                            }
-
-                                            updatedText = updatedText.slice(0, i + 1);
-                                            // set the updated text
-                                            setSteps(updatedText);
-                                            return;
-
-                                        }
-                                        // user is trying to add a period at the end of the string
-                                        // add a newline after the period
-                                        setSteps(e.target.value + '\n');
-                                        return;
+                                    // if user is trying to add text
+                                    if (e.target.value.length > steps.length) {
+                                        let text = e.target.value;
+                                        text = text.replace(/\.\s*$/, ".\n");
+                                        setSteps(text);
                                     }
-
-                                    // not relevant to the period, so just update the state
-                                    setSteps(e.target.value);
+                                    // otherwise user is trying to remove text
+                                    else {
+                                        setSteps(e.target.value);
+                                    }
                                 }}
                                 className="flex-1 p-2 md:min-h-80 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
                             />
