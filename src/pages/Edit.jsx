@@ -87,16 +87,44 @@ function Edit() {
                             <textarea
                                 value={steps}
                                 onChange={(e) => {
-                                    // if user is trying to add text
-                                    if (e.target.value.length > steps.length) {
-                                        let text = e.target.value;
-                                        text = text.replace(/\.\s*$/, ".\n");
-                                        setSteps(text);
-                                    }
-                                    // otherwise user is trying to remove text
-                                    else {
+
+                                    // if user is removing text
+                                    if (e.target.value.length < steps.length) {
+                                        console.log("removing text");
                                         setSteps(e.target.value);
+                                        return;
                                     }
+
+                                    // if user is adding text
+                                    console.log("adding text");
+
+                                    let currentChar = e.target.value.split('')[e.target.selectionStart - 1];
+                                    let previousChar = e.target.value.split('')[e.target.selectionStart - 2];
+
+
+                                    if (!previousChar || previousChar !== '.') {
+                                        console.log('user is not trying to add anything after a period');
+                                        setSteps(e.target.value);
+                                        return;
+                                    }
+
+                                    if (currentChar === '\n' || currentChar === ' ') {
+                                        console.log('user is trying to add text after a period that is a new line or space');
+                                        let text = e.target.value;
+                                        setSteps(text);
+                                        return;
+                                    }
+
+
+                                    console.log('user is trying to add text after a period that is not a new line or space');
+                                    let text = e.target.value;
+                                    text = text.slice(0, e.target.selectionStart - 1);
+                                    // update the text with a new line
+                                    text += "\n" + e.target.value.slice(e.target.selectionStart - 1);
+                                    setSteps(text);
+                                    return;
+
+
                                 }}
                                 className="flex-1 p-2 md:min-h-80 rounded-lg bg-[#3a3a3a] text-[#dadada] border border-[#4a4a4a] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]"
                             />
