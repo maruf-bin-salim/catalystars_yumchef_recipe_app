@@ -12,6 +12,7 @@ export default {
         typing: "typing 1s steps(40) infinite",
         glowingText: "glowing-text 3s ease-in-out infinite",
         fade: 'fadeIn 1s ease-in-out',
+        slide: 'slideIn 1s ease-in-out',
       },
       keyframes: {
 				fadeIn: {

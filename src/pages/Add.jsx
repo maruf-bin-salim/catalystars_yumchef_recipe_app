@@ -52,7 +52,7 @@ function Add() {
             )}
             {!loading && (
                 <>
-                    <div className="flex flex-col gap-4 flex-1 overflow-auto mx-4 md:mx-24 w-[90%] md:w-2/3 bg-gray-800 shadow-md mt-10 p-6 rounded-lg">
+                    <div className="flex flex-col gap-4 flex-1 overflow-auto mx-4 md:mx-24 w-[90%] md:w-2/3 bg-gray-800 shadow-md mt-10 p-6 rounded-lg animate-slide">
                         <div className="flex flex-col gap-2">
                             <label className="text-[#dadada]">Title</label>
                             <input
