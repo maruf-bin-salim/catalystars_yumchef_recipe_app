@@ -13,6 +13,8 @@ function Add() {
     const [imageUrl, setImageUrl] = useState("");
     const [steps, setSteps] = useState("");
     const navigate = useNavigate();
+    const [isHovered, setIsHovered] = useState(false);
+
 
 
 
@@ -34,8 +36,12 @@ function Add() {
         <div className="h-screen bg-gray-900 text-[#dadada] flex flex-col items-center">
             <Nav />
             <div className="flex justify-start w-full p-4 justify-endflex ">
-                <button onClick={() => navigate(-1)} >
+                <button onClick={() => navigate(-1)} className="relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
                     <ArrowLeft className="w-8 h-8" />
+                    {
+                        isHovered &&
+                        <span class="animate-ping absolute h-full w-full rounded-full bg-sky-400 opacity-75 top-0 left-0"></span>
+                    }
                 </button>
             </div>
 
@@ -123,7 +129,7 @@ function Add() {
                     </div>
                     <div className="flex justify-center w-full p-4 md:justify-end">
                         <button
-                            className="p-2 text-white bg-yellow-700 rounded-lg shadow-md hover:bg-yellow-800"
+                            className="p-2 text-white bg-yellow-700 rounded-lg shadow-md cursor-pointer hover:bg-yellow-800 hover:animate-shrink"
                             onClick={handleAddRecipe}
                             disabled={loading}
                         >
