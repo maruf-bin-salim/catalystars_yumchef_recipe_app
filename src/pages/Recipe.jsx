@@ -39,13 +39,13 @@ function Recipe() {
                 <div className="flex flex-col flex-1 w-full gap-4 p-4 overflow-auto md:p-8 md:px-40">
                     <div className="flex flex-col gap-4 md:flex-row">
                         <img src={selectedRecipe.imageUrl} alt="Recipe" className="object-cover w-full rounded-lg shadow-md cursor-pointer h-80 md:w-80 hover:animate-imageCircle" />
-                        <div className="flex flex-col text-center md:text-left md:ml-10 ">
+                        <div className="flex flex-col text-center md:text-left md:ml-10 animate-fade">
                             <h2 className="text-[#f59e0b] text-2xl md:text-4xl cursor-pointer hover:animate-shrink">{selectedRecipe.title}</h2>
                             <p className="text-[#dadada] mt-2 cursor-pointer hover:animate-shrink">{selectedRecipe.description}</p>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 mt-4 ">
-                        <p className="text-[#dadada] whitespace-pre-wrap text-left">
+                        <p className="text-[#dadada] whitespace-pre-wrap text-left animate-fade">
                             <span className="font-bold">Steps</span>
                             <br />
                             <br />

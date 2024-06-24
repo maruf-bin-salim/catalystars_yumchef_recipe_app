@@ -22,7 +22,7 @@ function Home() {
             <div className="grid w-full grid-cols-1 gap-4 p-4 overflow-auto md:grid-cols-3 md:gap-8 md:p-8 md:px-24">
                 {!loading && recipes.map((recipe) => {
                     return (
-                        <div key={recipe.id} className="flex flex-col gap-4 p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700">
+                        <div key={recipe.id} className="flex flex-col gap-4 p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 animate-fade">
                          
                             <img src={recipe.imageUrl} alt="image" className="object-cover w-full h-48 cursor-pointer hover:animate-shrink" />
                             <h2 className="text-[#f59e0b] cursor-pointer hover:animate-shrink">{recipe.title}</h2>
